@@ -168,7 +168,7 @@ animation-duration: 1s;
   align-items: center;
  }
  .css-de1c49 {
-  height: auto; 
+  height: auto !important; 
   }
  @keyframes popup {
   0%   {opacity: 0;}
