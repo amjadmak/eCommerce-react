@@ -167,7 +167,9 @@ animation-duration: 1s;
   flex-direction: column;
   align-items: center;
  }
-
+ .css-de1c49 {
+  height: auto; 
+  }
  @keyframes popup {
   0%   {opacity: 0;}
   25% {opacity: .3;}

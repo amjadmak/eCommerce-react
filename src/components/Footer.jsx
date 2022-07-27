@@ -1,7 +1,7 @@
 //Copyrights and people who contributed to this file and their linkedIn, GIthub...etc
 import React from "react";
 import { BottomNavigation, Toolbar, Typography } from "@mui/material";
-import Divider from "@mui/material/Divider";
+
 import IconButton from "@mui/material/IconButton";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
