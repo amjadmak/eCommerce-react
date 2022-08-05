@@ -23,7 +23,7 @@ export default function App() {
   }, []);
 
   return (
-    <div style={{ height: "100%", background: "#fafafa" }}>
+    <div style={{ background: "#fafafa" }}>
       <NavBar setFilteredInfo={setFilteredInfo} filteredInfo={filteredInfo} />
       <Routes>
         <Route path="/" element={<Home />} />

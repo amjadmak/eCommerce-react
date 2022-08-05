@@ -135,12 +135,13 @@ animation-duration: 1s;
     color : white;
 }
 .heading{
-  height: 30%;
+  height: 20%;
 }
 .Home .content{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
   h1{
     font-family: 'Mochiy Pop One', sans-serif;
@@ -176,3 +177,12 @@ animation-duration: 1s;
   50% {opacity: .5;}
   100% {opacity: 1;}
 }
+@media only screen and (max-width: 768px){
+ .Home .content{
+    flex-direction: column;
+    margin: 2px;
+    padding: 5px;
+    
+  }
+}
+  
