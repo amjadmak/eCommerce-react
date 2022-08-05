@@ -125,6 +125,7 @@ animation-duration: 1s;
 .About{
   display: flex;
   flex-direction: column;
+  justify-content: stretch;
   align-items: center;
     background-image: url("/public/about.png");
     height: 100%;

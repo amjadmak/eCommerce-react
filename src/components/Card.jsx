@@ -55,9 +55,9 @@ const OneCard = ({ image, title, price, productID }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions sx={{ justifyContent: "flex-end" }}>
+      <CardActions sx={{ justifyContent: "flex-between" }}>
         <TextField
-          sx={{ width: "20%", p: 0, mr: 20 }}
+          sx={{ width: "20%", mr: "40%" }}
           type="number"
           value={quantity}
           InputProps={{
