@@ -7,6 +7,7 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useMutation } from "react-query";
 import { useState } from "react";
+import axios from "axios";
 import "../style.css";
 
 const OneCard = ({ image, title, price, productID }) => {
@@ -20,16 +21,15 @@ const OneCard = ({ image, title, price, productID }) => {
   };
 
   const postData = useMutation((Addproduct) => {
-    return fetch("https://abanon-cart.herokuapp.com/cart", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Addproduct),
-    });
+    axios
+      .post("https://abanon-cart.herokuapp.com/cart", Addproduct)
+      .catch(
+        axios.patch(`https://abanon-cart.herokuapp.com/cart/${Addproduct.id}`, {
+          quantity: Addproduct.quantity,
+        })
+      )
+      .then(handlePopup());
   });
-
   return (
     <Card sx={{ maxWidth: 345, p: "15" }} style={{ height: "" }}>
       <CardActionArea href={`allproducts/${productID}`}>
@@ -80,7 +80,6 @@ const OneCard = ({ image, title, price, productID }) => {
               quantity: quantity,
               total: price * parseInt(quantity),
             });
-            handlePopup();
           }}
           size="small"
           color="primary"
@@ -89,9 +88,10 @@ const OneCard = ({ image, title, price, productID }) => {
           Add to Cart
         </Button>
       </CardActions>
-      <div id="addedPopup" style={{ display: addedPopup ? "block" : "none" }}>
-        The product was added to the cart!!
-      </div>
+
+      {addedPopup ? (
+        <div id="addedPopup">The product was added to the cart!!</div>
+      ) : null}
     </Card>
   );
 };

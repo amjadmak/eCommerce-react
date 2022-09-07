@@ -9,6 +9,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { useQueryClient } from "react-query";
+import axios from "axios";
 import "../style.css";
 
 const styledImage = {
@@ -20,14 +21,7 @@ const DisplayCart = ({ data }) => {
   const queryClient = new useQueryClient();
   const deleteItem = useMutation(
     (productID) => {
-      console.log(
-        "The product With the ID " +
-          productID +
-          " has been removed from the cart"
-      );
-      return fetch(`https://abanon-cart.herokuapp.com/cart/${productID}`, {
-        method: "DELETE",
-      });
+      return axios.delete(`https://abanon-cart.herokuapp.com/cart/${productID}`);
     },
     {
       onSuccess: () => {
@@ -35,6 +29,7 @@ const DisplayCart = ({ data }) => {
       },
     }
   );
+ 
 
   let total = 0;
   return (
@@ -110,6 +105,7 @@ const DisplayCart = ({ data }) => {
           variant="contained"
           sx={{ m: "10px", width: "10%%" }}
           style={{ background: "#1976d2", color: "#ffffff" }}
+
         >
           Check Out
         </Button>

@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import { useMutation } from "react-query";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import axios from "axios";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -16,18 +17,28 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 const OneProduct = ({ ProductInfo }) => {
   const [quantity, setQuantity] = useState(1);
+  const [addedPopup, setaddedPopup] = useState(false);
+
+  const handlePopup = () => {
+    setaddedPopup(true);
+
+    setTimeout(() => setaddedPopup(false), 4000);
+  };
+
   const postData = useMutation((Addproduct) => {
-    console.log(Addproduct);
-    return fetch("https://abanon-cart.herokuapp.com/cart", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Addproduct),
-    });
+    axios
+      .post("https://abanon-cart.herokuapp.com/cart", Addproduct)
+      .catch(
+        axios.patch(`https://abanon-cart.herokuapp.com/cart/${Addproduct.id}`, {
+          quantity: Addproduct.quantity,
+        })
+      )
+      .then(handlePopup());
   });
-  return (
+  return (<>
+    {addedPopup ? (
+      <div id="addedPopup">The product was added to the cart!!</div>
+    ) : null}
     <Grid p={6} style={{ height: "100%" }} container spacing={2}>
       <Grid sx={{}} item xs={12} md={8}>
         <Item
@@ -104,7 +115,7 @@ const OneProduct = ({ ProductInfo }) => {
           </div>
         </Item>
       </Grid>
-    </Grid>
+    </Grid></>
   );
 };
 export default OneProduct;
